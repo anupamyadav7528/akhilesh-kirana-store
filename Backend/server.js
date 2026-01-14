@@ -8,8 +8,8 @@ app.use(express.json());
 app.use(cors());
 
 // 1. Database Connection
-mongoose.connect("mongodb://127.0.0.1:27017/vinayKiranaStore")
-    .then(() => console.log("✅ Database Connected"))
+mongoose.connect("mongodb+srv://vinay:vinay123@cluster0.ypfoelr.mongodb.net/vinayKiranaStore?retryWrites=true&w=majority&appName=Cluster0")
+    .then(() => console.log("✅ Online Database Connected"))
     .catch(err => console.log("❌ DB Error:", err));
 
 // 2. Product Schema
