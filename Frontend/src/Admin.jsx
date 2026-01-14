@@ -26,7 +26,7 @@ export default function Admin() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === "Vinay123") {
+    if (password === "@akhilesh1947") {
       setIsLoggedIn(true);
     } else {
       alert("❌ Galat Password!");

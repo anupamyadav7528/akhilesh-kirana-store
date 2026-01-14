@@ -48,7 +48,7 @@ export default function Shop() {
     message += `💰 *Total Pay: ₹${finalTotal}*`;
 
     // 👇 यहाँ अपना नंबर लिखें (91 जरूर लगाएं)
-    window.open(`https://wa.me/917800616270?text=${message}`, "_blank");
+    window.open(`https://wa.me/916388443178?text=${message}`, "_blank");
   };
 
   // सर्च फिल्टर
@@ -67,7 +67,7 @@ export default function Shop() {
                     <Zap size={20} fill="currentColor" />
                 </div>
                 <div>
-                    <h1 className="text-xl font-bold text-gray-900 tracking-tight leading-none">Vinay</h1>
+                    <h1 className="text-xl font-bold text-gray-900 tracking-tight leading-none">Akhilesh</h1>
                     <span className="text-xs text-green-600 font-bold tracking-widest uppercase">Kirana Store</span>
                 </div>
             </div>
