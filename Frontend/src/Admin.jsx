@@ -19,7 +19,7 @@ const Admin = () => {
   // --- 3. LOGIN FUNCTION ---
   const handleLogin = () => {
     // Yaha apna Password set karein (Akhilesh123 ya Vinay123)
-    if (password === "Akhilesh123") { 
+    if (password === "@akhilesh1947") { 
       setIsLoggedIn(true);
     } else {
       alert("Wrong Password! Sirf Akhilesh Bhai allowed hain.");
