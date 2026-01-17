@@ -31,7 +31,7 @@ const Admin = () => {
     if (isLoggedIn) { // Sirf login hone ke baad hi data layein
       const fetchProducts = async () => {
         try {
-          const res = await axios.get("https://vinaygenaralstore.onrender.com/api/products");
+          const res = await axios.get("https://akhilesh-kirana-store.onrender.com/api/products");
           setProducts(res.data);
         } catch (error) {
           console.log("Error fetching products:", error);
