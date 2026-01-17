@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
+app.use(cors({
+    origin: ["https://akhilesh-general-store.onrender.com"],
+    credentials: true
+}));
 app.use(express.json());
 app.use(cors());
 
