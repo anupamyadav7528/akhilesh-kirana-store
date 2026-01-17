@@ -18,7 +18,7 @@ const Admin = () => {
 
   // --- 3. LOGIN FUNCTION ---
   const handleLogin = () => {
-    // Yaha apna Password set karein (Akhilesh123 ya Vinay123)
+    // Yaha apna Password set karein (Akhilesh123)
     if (password === "@akhilesh1947") { 
       setIsLoggedIn(true);
     } else {
@@ -49,7 +49,7 @@ const Admin = () => {
   const handleAddProduct = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://vinaygenaralstore.onrender.com/api/products", product);
+      await axios.post("https://akhilesh-kirana-store.onrender.com/api/products", product);
       alert("Product Added!");
       setProduct({ name: '', price: '', category: 'Grocery', image: '' });
       window.location.reload();
@@ -61,7 +61,7 @@ const Admin = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Delete kar dein?")) {
       try {
-        await axios.delete(`https://vinaygenaralstore.onrender.com/api/products/${id}`);
+        await axios.delete(`https://akhilesh-kirana-store.onrender.com/api/products/${id}`);
         alert("Product Deleted!");
         window.location.reload();
       } catch (error) {
