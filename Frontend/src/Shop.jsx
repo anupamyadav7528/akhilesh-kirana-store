@@ -8,7 +8,8 @@ export default function Shop() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isHomeDelivery, setIsHomeDelivery] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [customerName, setCustomerName] = useState(""); // नाम के लिए
+  const [address, setAddress] = useState("");         // पते के लिए
   // 1. डेटा लाना
   useEffect(() => {
     const fetchProducts = async () => {
@@ -39,26 +40,29 @@ export default function Shop() {
   // 3. WHATSAPP ORDER (Fixed Version)
   const placeOrder = () => {
     if (cart.length === 0) return alert("Cart khali hai!");
+    
+    // 👇 अगर नाम या पता नहीं भरा, तो रोक देगा
+    if (!customerName || !address) {
+      return alert("Order karne ke liye Naam aur Address bharna jaruri hai!");
+    }
 
-    // Step 1: मैसेज तैयार करें (साधारण टेक्स्ट में)
-    let message = "*🔥 New Order from Website!*\n\n"; // \n का मतलब नई लाइन
+    let message = `*🔥 New Order from Website!*%0A%0A`;
+    message += `👤 *Name:* ${customerName}%0A`;
+    message += `📍 *Address:* ${address}%0A`;
+    message += `--------------------%0A`;
+    
     cart.forEach((item, i) => {
-      message += `${i + 1}. ${item.name} - ₹${item.price}\n`;
+      message += `${i + 1}. ${item.name} - ₹${item.price}%0A`;
     });
-    message += "\n--------------------\n";
-    message += `🚚 Delivery: ${isHomeDelivery ? "Home Delivery (+₹5)" : "Self Pickup"}\n`;
+    
+    message += `%0A--------------------%0A`;
+    message += `🚚 Delivery: ${isHomeDelivery ? "Home Delivery (+₹5)" : "Self Pickup"}%0A`;
     message += `💰 *Total Pay: ₹${finalTotal}*`;
 
-    // Step 2: लिंक बनाएं (encodeURIComponent का जादू)
-    let phoneNumber = "917800616270"; // अपना सही नंबर यहाँ चेक करें
-    
-    // यह लिंक स्पेस और सिंबल को सही कर देगा
-    let url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-
-    // Step 3: WhatsApp खोलें
-    window.open(url, "_blank");
+    // 👇 अपना नंबर यहाँ सही लिखें
+    let phoneNumber = "917800616270"; 
+    window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`, "_blank");
   };
-
   // सर्च फिल्टर
   const filteredProducts = products.filter(p => 
     p.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -252,6 +256,26 @@ export default function Shop() {
                         <span>Grand Total</span>
                         <span>₹{finalTotal}</span>
                     </div>
+                </div>
+                {/* 👇 यहाँ से नाम और पता भरने वाला बॉक्स शुरू */}
+                <div className="mb-4 bg-white p-3 rounded-xl border border-gray-200">
+                    <p className="text-xs font-bold text-gray-500 mb-2">DELIVERY DETAILS</p>
+                    
+                    <input 
+                        type="text" 
+                        placeholder="Apna Naam Likhein..." 
+                        className="w-full border-b border-gray-200 py-2 text-sm focus:outline-none focus:border-green-500 mb-3"
+                        value={customerName}
+                        onChange={(e) => setCustomerName(e.target.value)}
+                    />
+                    
+                    <textarea 
+                        placeholder="Pura Pata (Address) Likhein..." 
+                        className="w-full border-b border-gray-200 py-2 text-sm focus:outline-none focus:border-green-500"
+                        rows="2"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                    ></textarea>
                 </div>
 
                 <button 
